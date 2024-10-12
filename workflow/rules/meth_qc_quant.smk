@@ -26,8 +26,6 @@ rule meth_qc_quant:
         window_size = config["window_size"],
     log:
         "logs/{sample}_medips_medestrand_qsea.log"
-    conda:
-        "extra_env/R.yaml"
     shell:
         "(Rscript --vanilla {params.scr_dir}/workflow/scripts/medips_medestrand_qsea.R "
         "{wildcards.sample} {input} {params.bsgenome} {params.ispaired} {params.window_size} "
@@ -56,8 +54,6 @@ rule meth_qc_quant_spikein:
         window_size = config["window_size"],
     log:
         "logs/{sample}_medips_spikein.log"
-    conda:
-        "extra_env/R.yaml"
     shell:
         "(Rscript --vanilla {params.scr_dir}/workflow/scripts/medips_4spikein.R "
         "{wildcards.sample} {input} {params.ispaired} {params.window_size} "
