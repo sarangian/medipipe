@@ -87,8 +87,7 @@ rule samtools_umi_tools_pe:
         tmp_bam = "dedup_bam_umi_pe/{sample}_tmp.bam",
         stat_prefix = "dedup_bam_umi_pe/{sample}_dedup"
     threads: 12
-    conda:
-        "extra_env/umi_tools.yaml"
+  
     log:
         "logs/{sample}_dedup_umi.log"
     shell:
@@ -111,8 +110,7 @@ rule samtools_umi_tools_se:
         tmp_bam = "dedup_bam_umi_se/{sample}_tmp.bam",
         stat_prefix = "dedup_bam_umi_se/{sample}_dedup"
     threads: 12
-    conda:
-        "extra_env/umi_tools.yaml"
+    
     log:
         "logs/{sample}_dedup_umi.log"
     shell:
