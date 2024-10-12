@@ -38,8 +38,6 @@ rule extract_barcode:
         temp("barcoded_fq/{sample}_R2.fastq"),
         "barcoded_fq/{sample}_R1.fastq.gz",
         "barcoded_fq/{sample}_R2.fastq.gz"
-    conda:
-        "extra_env/ConsensusCruncher.yaml"
     params:
         src = pipe_dir + "/workflow/dependencies/ConsensusCruncher/ConsensusCruncher/extract_barcodes.py",
         blist = umi_list,                 ## barcode list
@@ -92,8 +90,6 @@ rule umi_tools_extract_se:
     output:
         temp("barcoded_fq_se/{sample}.fastq.gz"),
         "barcoded_fq_se/{sample}_extract.log"
-    conda:
-        "extra_env/umi_tools.yaml"
     params:
         bcp = lambda wildcards: config["umi_pattern"]        ##  deactivate automatic wildcard expansion of {}
     shell:
