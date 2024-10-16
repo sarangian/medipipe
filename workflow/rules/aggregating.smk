@@ -19,8 +19,6 @@ rule multiqc_pe:
         "aggregated/QC_pe/multiqc_data/{sample}_picard_insertSize.txt"
     log:
         "logs/{sample}_pe.log"                        ## wildcard.sample needed for --cluster
-    conda:
-        "extra_env/multiQC.yaml"
     shell:
         "(multiqc -f {input} -o aggregated/QC_pe/) 2> {log}"
 
@@ -34,8 +32,6 @@ rule multiqc_pe_spikein:
         "aggregated_spikein/QC_pe/{sample}.html"              ## works for --cluster as we
     log:
         "logs/{sample}_pe_spikein.log"                        ## wildcard.sample needed for --cluster
-    conda:
-        "extra_env/multiQC.yaml"
     shell:
         "(multiqc -f {input} -o aggregated_spikein/QC_pe/) 2> {log}"
 
@@ -54,8 +50,6 @@ rule multiqc_se:
         "aggregated/QC_se/multiqc_data/{sample}_samtools_stats.txt"
     log:
         "logs/{sample}_se.log"
-    conda:
-        "extra_env/multiQC.yaml"
     shell:
         "(multiqc -f {input} -o aggregated/QC_se/) 2> {log}"
 
@@ -102,8 +96,6 @@ rule aggregate_qc_report:
         ispaired = config["paired-end"],
     log:
         "logs/{sample}_qc_report.log"
-    conda:
-        "extra_env/R_aggr_qc_report.yaml"
     shell:
         "(Rscript --vanilla {params.scr_dir}/workflow/scripts/aggr_qc_report.R "
         "{params.aggr} {params.ispaired} {input} {params.scr_dir} {params.out_dir}) 2> {log}"
